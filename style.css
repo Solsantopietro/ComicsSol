@@ -1,0 +1,68 @@
+@import url("https://fonts.googleapis.com/css2?family=Bangers&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap");
+body {
+  margin: 0;
+  font-family: "Roboto", sans-serif;
+}
+
+header {
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+}
+header .principal-title {
+  height: 50px;
+  background-color: red;
+  width: 205px;
+}
+header .principal-title h1 {
+  margin-top: 0;
+  margin-left: 10px;
+  color: white;
+  font-family: "Bangers", cursive;
+  font-weight: bold;
+  font-size: 45px;
+}
+
+.banner {
+  width: 100%;
+  min-height: 400px;
+  background-image: url("./img/descarga.jpg");
+  background-size: cover;
+  position: relative;
+}
+
+.resultados {
+  display: flex;
+  flex-wrap: wrap;
+}
+.resultados .card {
+  width: 600px;
+  height: 230px;
+  background-color: #333333;
+  border-radius: 20px;
+  color: #fff;
+  display: flex;
+  margin: 20px;
+}
+.resultados .card .imagen {
+  width: 40%;
+  overflow: hidden;
+}
+.resultados .card .imagen img {
+  width: 100%;
+  height: auto;
+}
+.resultados .card .info {
+  padding: 20px;
+}
+.resultados .card .info .estado {
+  display: flex;
+}
+.resultados p {
+  margin: 0;
+}
+
+/*# sourceMappingURL=style.css.map */

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Ada Comics</title>
+</head>
+<body>
+    <header class="">
+        <div class="principal-title">
+            <h1>ADA COMICS</h1>
+        </div>
+    </header>
+    <div class="banner"></div>
+    <section class="section-search">
+        <div class="search">
+            <h1 class="search-title">Busqueda</h1>
+        </div>
+        <div class="search-card">
+            <div class="search-text">
+                <input type="text" id="search-input" class="search-input" placeholder="Ingresá tu búsqueda" aria-labelledby="search-title">
+                <i class="fas fa-search" aria-hidden="true"></i>
+            </div>
+            <div class="search-input">
+                <div class="earch-input-container">
+                    <label for="search-type">TIPO</label>
+                    <select name="search-type" id="search-type">
+                        <option value="comics">COMICS</option>
+                        <option value="characters">PERSONAJES</option>
+                      </select>
+                    <label for="search-type">ORDEN</label>
+                    <select name="search-sort" id="search-sort">                  
+                        <option value="title">A-Z</option>
+                        <option value="-title">Z-A</option>
+                        <option value="-focDate">Más nuevos</option>
+                        <option value="focDate">Más viejos</option>
+                    </select>
+                </div>
+                <button type="button" class="search-button">BUSCAR</button>
+            </div>
+        </div>
+    </section>
+    <section class="result">
+        <h2>Resultados</h2>
+        <p><span>0</span><p>resultados</p>
+    </section>
+    <section class="resultados"></section>
+
+    <script src="index.js"></script>
+</body>
+</html>
