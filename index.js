@@ -1,95 +1,46 @@
-fetch("")
+const botonProx = document.querySelector("#prox")
+const botonComics = document.querySelector("#comic")
+const botonPersonajes = document.querySelector("#char")
+
+
+const urlBase = "http://gateway.marvel.com/v1/public/"
+const apiKey = "df9ffa0c0208771549144cf90259dd73"
+const comicsPorPagina = 20;
+let paginaActual = 0
+
+botonProx.onclick = () => {
+    paginaActual++
+    console.log("pagina actual:", paginaActual)
+    buscarComics()
+
+}
+
+const buscarComics = (url, paginaActual, busqueda) => {
+    console.log("buscando comics...")
+    fetch(`${urlBase + url}?apikey=${apiKey}&offset=${paginaActual * comicsPorPagina}`)
 .then((data) => {
     return data.json()
 })
 .then((data) => {
     console.log(data)
     const seccion = document.querySelector('.resultados');
-    comics = data.data.results
+    personajes = data.data.results
     
     seccion.innerHTML = '';
-        comics.map((comic) => {
-            seccion.innerHTML += `<p>${comic.title}</p>`
-            
-            
-
-
-        //     seccion.innerHTML += `
-        // <article>
-        //     <div class="card">
-        //         <div class="imagen">
-        //             <img src="${comic.image}">
-        //         </div>
-        //         <div class="info">
-        //         <div class="nombre">
-        //             <h2>${comic.name}</h2>
-        //         </div>
-        //         <div class="estado">
-        //             <p>${comic.status}</p>
-        //             - <p>${comic.species}</p>
-        //         </div>
-        //         <div class="ubicacion">
-        //             <p>Last known location:</p>
-        //             <p>${comic.location.name}</p>
-        //         </div>
-        //         <div class="episodio">
-        //             <p>First seen in:</p>
-        //             <a>${comic.episode[0]}</a>
-        //         </div>
-        //         </div>
-        //     </div>
-        // </article>
-        // `
+    personajes.map((personaje) => {
+        seccion.innerHTML += `<p>${personaje[busqueda]}</p>`
     })
 });
+}
 
-// const buscarInfo = (url) => {
-//     fetch(url)
-//         .then((data) => {
-//             return data.json();
-//         })
-//         .then((personajes) => {
-//             console.log(personajes);
-//             // const link = document.querySelector("#prox")
-    
-//             // link.onclick = (e) => {
-//             //   e.preventDefault()
-//             //   buscarInfo(personajes.info.next)
-//             // }
-    
-//             const seccion = document.querySelector('.resultados');
-    
-//             seccion.innerHTML = '';
-//             personajes.results.map((personaje) => {
-//                 seccion.innerHTML += `
-//             <article>
-//                 <div class="card">
-//                     <div class="imagen">
-//                         <img src="${personaje.image}">
-//                     </div>
-//                     <div class="info">
-//                     <div class="nombre">
-//                         <h2>${personaje.name}</h2>
-//                     </div>
-//                     <div class="estado">
-//                         <p>${personaje.status}</p>
-//                         - <p>${personaje.species}</p>
-//                     </div>
-//                     <div class="ubicacion">
-//                         <p>Last known location:</p>
-//                         <p>${personaje.location.name}</p>
-//                     </div>
-//                     <div class="episodio">
-//                         <p>First seen in:</p>
-//                         <a>${personaje.episode[0]}</a>
-//                     </div>
-//                     </div>
-//                 </div>
 
-//             </article>
-//             `
-//             })
-//         });
-//     }
-    
-//     buscarInfo('https://rickandmortyapi.com/api/character')
+botonComics.onclick = () => {
+    buscarComics("comics", paginaActual, "title")
+}
+
+botonPersonajes.onclick = () => {
+    buscarComics("characters", paginaActual, "name")
+}
+
+// ESTRUCTURA DE UNA URL:
+// url de la api + coleccion que buscamos + ? + queryParam=valor + & + queryParam=valor

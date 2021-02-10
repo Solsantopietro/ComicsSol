@@ -62,7 +62,10 @@ header .principal-title h1 {
   display: flex;
 }
 .resultados p {
-  margin: 0;
+  margin-top: 10px;
+  margin-right: 450px;
+  display: flex;
+  flex-direction: column;
 }
 
 /*# sourceMappingURL=style.css.map */
