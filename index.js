@@ -50,18 +50,16 @@ const buscarComics = () => {
 
             }
 
-            const pasaFiltroDeTexto = (personajes) => {
+            const pasaFiltroDeTexto = () => {
                 if (hayAlgoEscrito()) {
-                    if (personajes.includes(textInputFilter.value.toLowerCase())) {
-                        return true
-                    }
-                    return false
-                } else {
-                    return true
+                    let personajesFiltrados = personajes.filter(personaje => {
+                       return personaje[busqueda].toLowerCase().includes(searchText.value.toLowerCase())
+                    })
+                    console.log(personajesFiltrados)
                 }
             }
 
-            pasaFiltroDeTexto(personajes)
+            pasaFiltroDeTexto()
 
 
 
@@ -75,25 +73,25 @@ const buscarComics = () => {
 
 // BUSAQUEDA DE COMIC ALFABETICAMENTE 
 
-const busquedaPorOrden = (url, orderBy, busqueda) => {
-    fetch(`${urlBase + url}?apikey=${apiKey}&orderBy=${orderBy}`)
-        .then((data) => {
-            return data.json()
-        })
-        .then((data) => {
-            console.log(data)
-            console.log("busco de Z a A")
+// const busquedaPorOrden = (url, orderBy, busqueda) => {
+//     fetch(`${urlBase + url}?apikey=${apiKey}&orderBy=${orderBy}`)
+//         .then((data) => {
+//             return data.json()
+//         })
+//         .then((data) => {
+//             console.log(data)
+//             console.log("busco de Z a A")
 
-            comics = data.data.results
-            console.log(comics)
-            const seccion = document.querySelector('.resultados');
+//             comics = data.data.results
+//             console.log(comics)
+//             const seccion = document.querySelector('.resultados');
 
-            seccion.innerHTML = '';
-            comics.map((comic) => {
-                seccion.innerHTML += `<p>${comic[busqueda]}</p>`
-            })
-        })
-}
+//             seccion.innerHTML = '';
+//             comics.map((comic) => {
+//                 seccion.innerHTML += `<p>${comic[busqueda]}</p>`
+//             })
+//         })
+// }
 
 selectType.onchange = () => {
     if(selectType.value === 'characters') {
