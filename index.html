@@ -17,8 +17,8 @@
         <div class="search">
             <h1 class="search-title">Busqueda</h1>
         </div>
-        <div class="search-card">
-            <div class="search-text">
+            <form class="search-card">
+               <div class="search-text">
                 <input type="text" id="search-input" class="search-input" placeholder="Ingresá tu búsqueda" aria-labelledby="search-title">
                 <i class="fas fa-search" aria-hidden="true"></i>
             </div>
@@ -36,18 +36,18 @@
                         <option value="-focDate">Más nuevos</option>
                         <option value="focDate">Más viejos</option>
                     </select>
+                    <select class="selectSearchChar hidden" name="search-sort" id="search-sort">                  
+                        <option value="name">A-Z</option>
+                        <option value="-name">Z-A</option>
+                    </select>
                 </div>
-                <button type="button" class="search-button">BUSCAR</button>
-            </div>
-        </div>
+                <input type="submit" class="search-button">
+            </form>
     </section>
     <section class="result">
         <h2>Resultados</h2>
         <p><span>0</span><p>resultados</p>
     </section>
-    <button id="prox">proxima pagina</button>
-    <button id="comic">Ver comics</button>
-    <button id="char">Ver personajes</button>
 
     <section class="resultados"></section>
 

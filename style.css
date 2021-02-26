@@ -68,4 +68,8 @@ header .principal-title h1 {
   flex-direction: column;
 }
 
+.hidden {
+  display: none;
+}
+
 /*# sourceMappingURL=style.css.map */
