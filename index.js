@@ -7,14 +7,68 @@ const selectSearch = {
 }
 const selectType = document.querySelector(".select-type")
 const buttonSearch = document.querySelector(".search-button")
+const primeraPagina = document.querySelector(".primeraPagina")
+const anteriorPagina = document.querySelector(".anteriorPagina")
+const siguientePagina = document.querySelector(".siguientePagina")
+const ultimaPagina = document.querySelector(".ultimaPagina")
 const urlBase = "http://gateway.marvel.com/v1/public/"
 const apiKey = "df9ffa0c0208771549144cf90259dd73"
 const comicsPorPagina = 20;
 let paginaActual = 0
+const total = 48443
+
+console.log(primeraPagina)
+
+const disabledOrEnabled = () => {
+    if(paginaActual === (48443 - (48443 % 20)) / 20){
+        document.getElementById('forward').disabled = true;
+        document.getElementById('end').disabled = true;
+    }else{
+        document.getElementById('forward').disabled = false;
+        document.getElementById('end').disabled = false;
+    }
+    if(paginaActual !== 0) {
+        document.getElementById('start').disabled = false;
+        document.getElementById('back').disabled = false;
+    }else{
+        document.getElementById('start').disabled = true;
+        document.getElementById('back').disabled = true;
+    }
+}
+
+primeraPagina.onclick = () => {
+    console.log("click")
+    if(paginaActual !== 0) {
+        paginaActual = 0
+        buscarComics()
+        console.log("estamos en la pagina:", paginaActual)
+    }
+}
+
+siguientePagina.onclick = () => {
+    paginaActual++
+    buscarComics()
+}
+anteriorPagina.onclick = () => {
+    console.log("click")
+     console.log("estamos en la pagina:", paginaActual)
+    if(paginaActual !== 0) {
+        paginaActual--
+        buscarComics()
+    }
+}
+ultimaPagina.onclick = () => {
+    document.getElementById('forward').disabled = true;
+    document.getElementById('end').disabled = true;
+    paginaActual = (48443 - (48443 % 20)) / 20
+    buscarComics()
+    console.log("pagina actuial", paginaActual)
+}
 
 
 const buscarComics = () => {
     let busqueda = selectType.value === 'comics' ? 'title' : 'name'
+    disabledOrEnabled()
 
     console.log(`${urlBase + selectType.value}?apikey=${apiKey}&offset=${paginaActual * comicsPorPagina}&orderBy=${selectSearch[selectType.value].value}`)
     fetch(`${urlBase + selectType.value}?apikey=${apiKey}&offset=${paginaActual * comicsPorPagina}&orderBy=${selectSearch[selectType.value].value}`)
@@ -27,7 +81,6 @@ const buscarComics = () => {
             const searchText = document.querySelector(".search-input")
 
             personajes = data.data.results
-
 
             seccion.innerHTML = '';
             personajes.map((personaje) => {
@@ -65,33 +118,11 @@ const buscarComics = () => {
 
         });
 }
+buscarComics()
 
+const cambiarDePagina = () => {
 
-
-// ESTRUCTURA DE UNA URL:
-// url de la api + coleccion que buscamos + ? + queryParam=valor + & + queryParam=valor
-
-// BUSAQUEDA DE COMIC ALFABETICAMENTE 
-
-// const busquedaPorOrden = (url, orderBy, busqueda) => {
-//     fetch(`${urlBase + url}?apikey=${apiKey}&orderBy=${orderBy}`)
-//         .then((data) => {
-//             return data.json()
-//         })
-//         .then((data) => {
-//             console.log(data)
-//             console.log("busco de Z a A")
-
-//             comics = data.data.results
-//             console.log(comics)
-//             const seccion = document.querySelector('.resultados');
-
-//             seccion.innerHTML = '';
-//             comics.map((comic) => {
-//                 seccion.innerHTML += `<p>${comic[busqueda]}</p>`
-//             })
-//         })
-// }
+}
 
 selectType.onchange = () => {
     if(selectType.value === 'characters') {

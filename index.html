@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous">
     <title>Ada Comics</title>
 </head>
 <body>
@@ -15,11 +16,11 @@
     <div class="banner"></div>
     <section class="section-search">
         <div class="search">
-            <h1 class="search-title">Busqueda</h1>
+            <h1 class="search-title">Búsqueda</h1>
         </div>
             <form class="search-card">
                <div class="search-text">
-                <input type="text" id="search-input" class="search-input" placeholder="Ingresá tu búsqueda" aria-labelledby="search-title">
+                <input type="text" id="search-input" class="searchText" placeholder="Ingresá tu búsqueda" aria-labelledby="search-title">
                 <i class="fas fa-search" aria-hidden="true"></i>
             </div>
             <div class="search-input">
@@ -50,6 +51,21 @@
     </section>
 
     <section class="resultados"></section>
+
+    <div class="botonesFlecha">
+        <button type="button" id="start" class="primeraPagina botonFlecha"disabled="">
+          <i class="fas fa-angle-double-left" aria-hidden="true"></i>
+        </button>
+        <button type="button" id="back" class="anteriorPagina botonFlecha"disabled="">
+          <i class="fas fa-angle-left" aria-hidden="true"></i>
+        </button>
+        <button type="button" id="forward" class="siguientePagina botonFlecha"disabled="">
+          <i class="fas fa-angle-right" aria-hidden="true"></i>
+        </button>
+        <button type="button" id="end" class="ultimaPagina botonFlecha"disabled="">
+          <i class="fas fa-angle-double-right" aria-hidden="true"></i>
+        </button>
+      </div>
 
     <script src="index.js"></script>
 </body>
