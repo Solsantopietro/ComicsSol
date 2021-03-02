@@ -63,7 +63,7 @@ const buscarComics = () => {
         .then((data) => {
             console.log(data)
             const seccion = document.querySelector('.resultados');
-            const searchText = document.querySelector(".search-input")
+            const searchText = document.querySelector("#search-input")
 
 
             personajes = data.data.results
@@ -112,20 +112,20 @@ const buscarComics = () => {
                             </div>
                         </div>
                         `
-
             }
 
+            const mostrarLasTarjetas = () => {
+                seccion.innerHTML = '';
 
-            seccion.innerHTML = '';
-            personajes.map((personaje) => {
-                let imagen = personaje.thumbnail.path
-                let extension = personaje.thumbnail.extension
-                let carta = document.createElement('div');
-                carta.classList.add('card')
-                carta.onclick = () => {
-                    mostrarTarjeta(personaje[busqueda],personaje.description,imagen,extension)
-                }
-                carta.innerHTML = `
+                personajes.map((personaje) => {
+                    let imagen = personaje.thumbnail.path
+                    let extension = personaje.thumbnail.extension
+                    let carta = document.createElement('div');
+                    carta.classList.add('card')
+                    carta.onclick = () => {
+                        mostrarTarjeta(personaje[busqueda], personaje.description, imagen, extension)
+                    }
+                    carta.innerHTML = `
                     <div class="comic-img-container">
                         <img src="${imagen}.${extension}" alt="" class="imagen">
                     </div>
@@ -134,9 +134,12 @@ const buscarComics = () => {
                     </div>
                     
                 `
-                seccion.appendChild(carta)
+                    seccion.appendChild(carta)
 
-            })
+                })
+            }
+            mostrarLasTarjetas()
+
 
 
 
@@ -147,11 +150,15 @@ const buscarComics = () => {
             }
 
             const pasaFiltroDeTexto = () => {
+                console.log(hayAlgoEscrito())
                 if (hayAlgoEscrito()) {
                     let personajesFiltrados = personajes.filter(personaje => {
                         return personaje[busqueda].toLowerCase().includes(searchText.value.toLowerCase())
                     })
+                    
                     console.log(personajesFiltrados)
+                    personajes = personajesFiltrados
+                    mostrarLasTarjetas()
                 }
             }
 
@@ -163,9 +170,7 @@ const buscarComics = () => {
 }
 buscarComics()
 
-const cambiarDePagina = () => {
 
-}
 
 selectType.onchange = () => {
     if (selectType.value === 'characters') {
