@@ -22,7 +22,6 @@ header .principal-title h1 {
   margin-left: 10px;
   color: white;
   font-family: "Bangers", cursive;
-  font-weight: bold;
   font-size: 45px;
 }
 
@@ -34,32 +33,108 @@ header .principal-title h1 {
   position: relative;
 }
 
+.sombra {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.inicio {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 10px;
+  box-sizing: border-box;
+}
+
+.search {
+  margin-top: 100px;
+}
+.search .search-title {
+  font-size: 25px;
+  font-weight: 100;
+}
+
+.search-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.search-card .search-input {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  width: 500px;
+}
+.search-card .search-input .search-input-container {
+  display: flex;
+  justify-content: space-between;
+}
+.search-card .search-input .search-input-container label {
+  font-size: 15px;
+  margin-right: 5px;
+  color: #757575;
+}
+.search-card .search-input .search-input-container .search-type {
+  margin-right: 15px;
+}
+.search-card .search-input .search-button {
+  position: relative;
+  top: 10px;
+  border: none;
+  width: 100px;
+  height: 50px;
+  color: white;
+  background-color: #151515;
+}
+.search-card .searchText {
+  border: 0;
+  border-bottom: 2px solid #151515;
+  width: 450px;
+  padding: 5px 35px;
+  border-radius: 0;
+  font-size: 26px;
+  box-sizing: border-box;
+}
+
+.result {
+  margin-top: 100px;
+  display: flex;
+  flex-direction: column;
+}
+
 .resultados {
   display: flex;
+  justify-content: space-between;
   flex-wrap: wrap;
 }
 .resultados .card {
-  width: 600px;
-  height: 230px;
-  background-color: #333333;
-  border-radius: 20px;
+  width: 200px;
+  background-color: #151515;
   color: #fff;
   display: flex;
-  margin: 20px;
+  flex-direction: column;
+  align-content: space-between;
+  justify-content: space-around;
+  justify-content: center;
+  margin-top: 10px;
+  cursor: pointer;
 }
 .resultados .card .imagen {
-  width: 40%;
-  overflow: hidden;
-}
-.resultados .card .imagen img {
   width: 100%;
   height: auto;
+  overflow: hidden;
 }
-.resultados .card .info {
-  padding: 20px;
+.resultados .card .imagen .img {
+  height: 100%;
 }
-.resultados .card .info .estado {
-  display: flex;
+.resultados .card .container-name {
+  height: 100px;
+}
+.resultados .card h3 {
+  margin-left: 10px;
 }
 .resultados p {
   margin-top: 10px;
@@ -68,8 +143,51 @@ header .principal-title h1 {
   flex-direction: column;
 }
 
+.result-card .personaje-section {
+  display: flex;
+}
+.result-card .personaje-section .character-info {
+  margin-left: 50px;
+}
+.result-card .imagen-result {
+  max-width: 350px;
+  display: block;
+}
+
+.botonesFlecha {
+  display: flex;
+  justify-content: center;
+}
+.botonesFlecha .botonFlecha {
+  border-style: none;
+  width: 40px;
+  height: 40px;
+  margin: 5px;
+  margin-top: 20px;
+  background-color: black;
+  color: white;
+}
+
 .hidden {
   display: none;
+}
+
+@media (max-width: 1035px) {
+  .search-card {
+    max-width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .searchText {
+    width: 100% !important;
+  }
+
+  .resultados {
+    width: 100%;
+  }
+  .resultados .card {
+    margin: 10px;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */
