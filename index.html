@@ -1,72 +1,91 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+        integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+        crossorigin="anonymous">
     <title>Ada Comics</title>
 </head>
+
 <body>
     <header class="">
         <div class="principal-title">
             <h1>ADA COMICS</h1>
         </div>
     </header>
-    <div class="banner"></div>
-    <section class="section-search">
+    <div class="banner"><div class="sombra"></div></div>
+    <main class="inicio">
         <div class="search">
             <h1 class="search-title">Búsqueda</h1>
         </div>
-            <form class="search-card">
-               <div class="search-text">
-                <input type="text" id="search-input" class="searchText" placeholder="Ingresá tu búsqueda" aria-labelledby="search-title">
-                <i class="fas fa-search" aria-hidden="true"></i>
-            </div>
-            <div class="search-input">
-                <div class="earch-input-container">
-                    <label for="search-type">TIPO</label>
-                    <select class="select-type" name="search-type" id="search-type">
-                        <option class="selectComic" value="comics">COMICS</option>
-                        <option class="selectChar" value="characters">PERSONAJES</option>
-                      </select>
-                    <label for="search-type">ORDEN</label>
-                    <select class="selectSearch" name="search-sort" id="search-sort">                  
-                        <option value="title">A-Z</option>
-                        <option value="-title">Z-A</option>
-                        <option value="-focDate">Más nuevos</option>
-                        <option value="focDate">Más viejos</option>
-                    </select>
-                    <select class="selectSearchChar hidden" name="search-sort" id="search-sort">                  
-                        <option value="name">A-Z</option>
-                        <option value="-name">Z-A</option>
-                    </select>
-                </div>
-                <input type="submit" class="search-button">
-            </form>
-    </section>
-    <section class="result">
-        <h2>Resultados</h2>
-        <p><span>0</span><p>resultados</p>
-    </section>
+        <section class="section-search">
 
-    <section class="resultados"></section>
+            <form class="search-card">
+                <div class="search-text">
+                    <input type="text" id="search-input" class="searchText" placeholder="Ingresá tu búsqueda"
+                        aria-labelledby="search-title">
+                    <i class="fas fa-search" aria-hidden="true"></i>
+                </div>
+                <div class="search-input">
+                    <div class="search-input-container">
+                        <div class="search-type">
+                            <label for="search-type">TIPO</label>
+                            <select class="select-type" name="search-type" id="search-type">
+                                <option class="selectComic" value="comics">COMICS</option>
+                                <option class="selectChar" value="characters">PERSONAJES</option>
+                            </select>
+                        </div>
+                        <div class="search-order">
+                            <label for="search-type">ORDEN</label>
+                            <select class="selectSearch" name="search-sort" id="search-sort">
+                                <option value="title">A-Z</option>
+                                <option value="-title">Z-A</option>
+                                <option value="-focDate">Más nuevos</option>
+                                <option value="focDate">Más viejos</option>
+                            </select>
+                        </div>
+
+
+                        <select class="selectSearchChar hidden" name="search-sort" id="search-sort">
+                            <option value="name">A-Z</option>
+                            <option value="-name">Z-A</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="search-button">BUSCAR</button>
+                </div>
+            </form>
+        </section>
+        <section class="result">
+            <h2>Resultados</h2>
+            <p><span id="span-resultados">0 </span>resultados</p>
+        </section>
+
+        <section class="resultados"></section>
+    </main>
 
     <div class="botonesFlecha">
-        <button type="button" id="start" class="primeraPagina botonFlecha"disabled="">
-          <i class="fas fa-angle-double-left" aria-hidden="true"></i>
+        <button type="button" id="start" class="primeraPagina botonFlecha" disabled="">
+            <i class="fas fa-angle-double-left" aria-hidden="true"></i>
         </button>
-        <button type="button" id="back" class="anteriorPagina botonFlecha"disabled="">
-          <i class="fas fa-angle-left" aria-hidden="true"></i>
+        <button type="button" id="back" class="anteriorPagina botonFlecha" disabled="">
+            <i class="fas fa-angle-left" aria-hidden="true"></i>
         </button>
-        <button type="button" id="forward" class="siguientePagina botonFlecha"disabled="">
-          <i class="fas fa-angle-right" aria-hidden="true"></i>
+        <button type="button" id="forward" class="siguientePagina botonFlecha" disabled="">
+            <i class="fas fa-angle-right" aria-hidden="true"></i>
         </button>
-        <button type="button" id="end" class="ultimaPagina botonFlecha"disabled="">
-          <i class="fas fa-angle-double-right" aria-hidden="true"></i>
+        <button type="button" id="end" class="ultimaPagina botonFlecha" disabled="">
+            <i class="fas fa-angle-double-right" aria-hidden="true"></i>
         </button>
-      </div>
+    </div>
+
+    
+
 
     <script src="index.js"></script>
 </body>
+
 </html>

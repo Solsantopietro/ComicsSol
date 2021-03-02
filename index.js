@@ -15,30 +15,15 @@ const urlBase = "http://gateway.marvel.com/v1/public/"
 const apiKey = "df9ffa0c0208771549144cf90259dd73"
 const comicsPorPagina = 20;
 let paginaActual = 0
-const total = 48443
+
 
 console.log(primeraPagina)
 
-const disabledOrEnabled = () => {
-    if(paginaActual === (48443 - (48443 % 20)) / 20){
-        document.getElementById('forward').disabled = true;
-        document.getElementById('end').disabled = true;
-    }else{
-        document.getElementById('forward').disabled = false;
-        document.getElementById('end').disabled = false;
-    }
-    if(paginaActual !== 0) {
-        document.getElementById('start').disabled = false;
-        document.getElementById('back').disabled = false;
-    }else{
-        document.getElementById('start').disabled = true;
-        document.getElementById('back').disabled = true;
-    }
-}
+
 
 primeraPagina.onclick = () => {
     console.log("click")
-    if(paginaActual !== 0) {
+    if (paginaActual !== 0) {
         paginaActual = 0
         buscarComics()
         console.log("estamos en la pagina:", paginaActual)
@@ -51,8 +36,8 @@ siguientePagina.onclick = () => {
 }
 anteriorPagina.onclick = () => {
     console.log("click")
-     console.log("estamos en la pagina:", paginaActual)
-    if(paginaActual !== 0) {
+    console.log("estamos en la pagina:", paginaActual)
+    if (paginaActual !== 0) {
         paginaActual--
         buscarComics()
     }
@@ -68,7 +53,7 @@ ultimaPagina.onclick = () => {
 
 const buscarComics = () => {
     let busqueda = selectType.value === 'comics' ? 'title' : 'name'
-    disabledOrEnabled()
+
 
     console.log(`${urlBase + selectType.value}?apikey=${apiKey}&offset=${paginaActual * comicsPorPagina}&orderBy=${selectSearch[selectType.value].value}`)
     fetch(`${urlBase + selectType.value}?apikey=${apiKey}&offset=${paginaActual * comicsPorPagina}&orderBy=${selectSearch[selectType.value].value}`)
@@ -80,23 +65,81 @@ const buscarComics = () => {
             const seccion = document.querySelector('.resultados');
             const searchText = document.querySelector(".search-input")
 
+
             personajes = data.data.results
+            totalDeResultados = data.data.total
+
+            const disabledOrEnabled = () => {
+                if (paginaActual === (totalDeResultados - (totalDeResultados % 20)) / 20) {
+                    document.getElementById('forward').disabled = true;
+                    document.getElementById('end').disabled = true;
+                } else {
+                    document.getElementById('forward').disabled = false;
+                    document.getElementById('end').disabled = false;
+                }
+                if (paginaActual !== 0) {
+                    document.getElementById('start').disabled = false;
+                    document.getElementById('back').disabled = false;
+                } else {
+                    document.getElementById('start').disabled = true;
+                    document.getElementById('back').disabled = true;
+                }
+            }
+            disabledOrEnabled()
+
+            const tarjetas = document.querySelectorAll(".card")
+            console.log(tarjetas)
+
+            const mostrarTarjeta = (nombre, description, imagen, extension) => {
+                seccion.innerHTML = '';
+                seccion.innerHTML += `
+                        <div class="result-card">
+                            <div>
+                                <section class="personaje-section">
+                                    <img src="${imagen}.${extension}" alt="" class="imagen-result">
+                                    <div class="character-info">
+                                        <h2 class="character-name">${nombre}</h2>
+                                        <h3>Publicado:</h3>
+                                        <p class="comic-published"></p>
+                                        <h3>Guionistas:</h3>
+                                        <p class="comic-writers"></p>
+                                        <h3>Descripción:</h3>
+                                        <p class="comic-description"></p>
+                                        <p class="character-description">${description}</p>
+                                    </div>
+                                </section>
+                                <section class="results-section"></section>
+                            </div>
+                        </div>
+                        `
+
+            }
+
 
             seccion.innerHTML = '';
             personajes.map((personaje) => {
                 let imagen = personaje.thumbnail.path
                 let extension = personaje.thumbnail.extension
-                seccion.innerHTML += `
-                <div class="card">
+                let carta = document.createElement('div');
+                carta.classList.add('card')
+                carta.onclick = () => {
+                    mostrarTarjeta(personaje[busqueda],personaje.description,imagen,extension)
+                }
+                carta.innerHTML = `
                     <div class="comic-img-container">
                         <img src="${imagen}.${extension}" alt="" class="imagen">
                     </div>
                     <div class="container-name">
                         <h3 class="comic-title">${personaje[busqueda]}</h3>
                     </div>
-                </div>
+                    
                 `
+                seccion.appendChild(carta)
+
             })
+
+
+
 
             const hayAlgoEscrito = () => {
                 return (searchText.value !== "")
@@ -106,7 +149,7 @@ const buscarComics = () => {
             const pasaFiltroDeTexto = () => {
                 if (hayAlgoEscrito()) {
                     let personajesFiltrados = personajes.filter(personaje => {
-                       return personaje[busqueda].toLowerCase().includes(searchText.value.toLowerCase())
+                        return personaje[busqueda].toLowerCase().includes(searchText.value.toLowerCase())
                     })
                     console.log(personajesFiltrados)
                 }
@@ -125,22 +168,21 @@ const cambiarDePagina = () => {
 }
 
 selectType.onchange = () => {
-    if(selectType.value === 'characters') {
+    if (selectType.value === 'characters') {
         selectSearch.characters.classList.remove("hidden")
         selectSearch.comics.classList.add("hidden")
-    }else {
+    } else {
         selectSearch.comics.classList.remove("hidden")
         selectSearch.characters.classList.add("hidden")
     }
 
 }
 
-const busqueda = () => {
-    buttonSearch.onclick = (e) => {
-        e.preventDefault();
-        buscarComics()
+buttonSearch.onclick = (e) => {
+    e.preventDefault();
+    buscarComics()
 
-    }
 }
 
-busqueda()
+
+
