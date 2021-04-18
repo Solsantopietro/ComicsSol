@@ -16,17 +16,17 @@ const apiKey = "df9ffa0c0208771549144cf90259dd73"
 const comicsPorPagina = 20;
 let paginaActual = 0
 
-
+// no dejes console log en entregas
 console.log(primeraPagina)
 
 
 
 primeraPagina.onclick = () => {
-    console.log("click")
+    console.log("click") // plz no 
     if (paginaActual !== 0) {
         paginaActual = 0
         buscarComics()
-        console.log("estamos en la pagina:", paginaActual)
+        console.log("estamos en la pagina:", paginaActual) // :(
     }
 }
 
@@ -36,7 +36,7 @@ siguientePagina.onclick = () => {
 }
 anteriorPagina.onclick = () => {
     console.log("click")
-    console.log("estamos en la pagina:", paginaActual)
+    console.log("estamos en la pagina:", paginaActual) // :((
     if (paginaActual !== 0) {
         paginaActual--
         buscarComics()
@@ -45,9 +45,12 @@ anteriorPagina.onclick = () => {
 ultimaPagina.onclick = () => {
     document.getElementById('forward').disabled = true;
     document.getElementById('end').disabled = true;
+    // bien por deshabilitar aqui los botones: deberia ocurrir tambien en la primera pagina
+//    aca estas asumiendo que esta va a ser siempre la cantidad de comics. 
+//    cuando mejores este codigo va a haber que arreglarlo
     paginaActual = (48443 - (48443 % 20)) / 20
     buscarComics()
-    console.log("pagina actuial", paginaActual)
+    console.log("pagina actuial", paginaActual)  // :(((
 }
 
 
@@ -56,12 +59,13 @@ const buscarComics = () => {
 
 
     console.log(`${urlBase + selectType.value}?apikey=${apiKey}&offset=${paginaActual * comicsPorPagina}&orderBy=${selectSearch[selectType.value].value}`)
+     // :((((
     fetch(`${urlBase + selectType.value}?apikey=${apiKey}&offset=${paginaActual * comicsPorPagina}&orderBy=${selectSearch[selectType.value].value}`)
         .then((data) => {
             return data.json()
         })
         .then((data) => {
-            console.log(data)
+            console.log(data) // :(((((
             const seccion = document.querySelector('.resultados');
             const searchText = document.querySelector("#search-input")
 
@@ -69,6 +73,7 @@ const buscarComics = () => {
             personajes = data.data.results
             totalDeResultados = data.data.total
 
+            // esta funcion debria estar fuera del fetch
             const disabledOrEnabled = () => {
                 if (paginaActual === (totalDeResultados - (totalDeResultados % 20)) / 20) {
                     document.getElementById('forward').disabled = true;
@@ -88,7 +93,7 @@ const buscarComics = () => {
             disabledOrEnabled()
 
             const tarjetas = document.querySelectorAll(".card")
-            console.log(tarjetas)
+            console.log(tarjetas) // me estas matando sol
 
             const mostrarTarjeta = (nombre, description, imagen, extension) => {
                 seccion.innerHTML = '';
